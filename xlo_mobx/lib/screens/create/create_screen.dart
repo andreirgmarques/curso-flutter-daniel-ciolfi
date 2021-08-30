@@ -2,6 +2,9 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:xlo_mobx/components/custom_drawer/custom_drawer.dart';
+import 'package:xlo_mobx/screens/create/components/category_field.dart';
+import 'package:xlo_mobx/screens/create/components/cep_field.dart';
+import 'package:xlo_mobx/screens/create/components/hide_phone_field.dart';
 import 'package:xlo_mobx/screens/create/components/images_field.dart';
 import 'package:xlo_mobx/stores/create_store.dart';
 
@@ -33,6 +36,7 @@ class CreateScreen extends StatelessWidget {
         elevation: 8,
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ImagesField(_createStore),
             TextFormField(
@@ -50,6 +54,11 @@ class CreateScreen extends StatelessWidget {
               ),
               maxLines: null,
             ),
+            CategoryField(_createStore),
+            CEPField(
+              labelStyle: labelStyle,
+              contentPadding: contentPadding,
+            ),
             TextFormField(
               decoration: InputDecoration(
                 labelText: 'Preço *',
@@ -62,6 +71,18 @@ class CreateScreen extends StatelessWidget {
                 FilteringTextInputFormatter.digitsOnly,
                 RealInputFormatter(centavos: true),
               ],
+            ),
+            HidePhoneField(_createStore),
+            SizedBox(
+              height: 50,
+              child: RaisedButton(
+                child: Text('Enviar', style: TextStyle(fontSize: 18)),
+                color: Colors.orange,
+                textColor: Colors.white,
+                disabledColor: Colors.orange.withAlpha(120),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                onPressed: () {},
+              ),
             ),
           ],
         ),
